@@ -208,7 +208,7 @@ fn super_linter_job() -> Job {
     let mut steps = Vec::new();
     steps.push(checkout_sources_depth(Some(0)));
     steps.push(
-        Step::uses("mega-linter", "megalinter/megalinter@v5")
+        Step::uses("mega-linter", "megalinter/megalinter@v6")
             .env("VALIDATE_ALL_CODEBASE", "false")
             .env("DEFAULT_BRANCH", "master")
             .env("GITHUB_TOKEN", "${{ secrets.GITHUB_TOKEN }}")
@@ -288,6 +288,7 @@ fn main() {
     let yaml = Yaml::map(vec![
         ("on", Yaml::list(vec!["push", "pull_request"])),
         ("name", Yaml::string("CI")),
+        ("permissions", Yaml::string("read-all")),
         ("jobs", jobs()),
     ]);
 

@@ -4,7 +4,7 @@ use crate::ghwf::Step;
 use crate::yaml::Yaml;
 
 pub fn checkout_sources_depth(depth: Option<u32>) -> Step {
-    let mut step = Step::uses("Checkout sources", "actions/checkout@v2");
+    let mut step = Step::uses("Checkout sources", "actions/checkout@v4");
     if let Some(depth) = depth {
         step.with = Some(Yaml::Map(vec![(
             "fetch-depth".to_owned(),
